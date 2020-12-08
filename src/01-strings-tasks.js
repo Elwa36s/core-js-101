@@ -143,8 +143,8 @@ function removeFirstOccurrences(str, value) {
  *   '<span>' => 'span'
  *   '<a>' => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.slice(1, str.length - 1);
 }
 
 
@@ -211,8 +211,23 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  let top = ['┌', '┐\n'];
+  let middle = ['│', '│\n'];
+  let bottom = ['└', '┘\n'];
+  const horizon = new Array(width - 2);
+  horizon.fill('─');
+  const space = new Array(width - 2);
+  space.fill(' ');
+  top.splice(1, 0, horizon.join(''));
+  middle.splice(1, 0, space.join(''));
+  bottom.splice(1, 0, horizon.join(''));
+  top = top.join('');
+  middle = middle.join('');
+  const verticality = new Array(height - 2);
+  verticality.fill(middle);
+  bottom = bottom.join('');
+  return top + middle + bottom;
 }
 
 
