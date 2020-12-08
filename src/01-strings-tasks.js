@@ -226,11 +226,17 @@ function getRectangleString(/* width, height */) {
  *
  */
 function encodeToRot13(str) {
-let arr = str.split('');
-arr.map(function (item) {
-  const code = item.charCodeAt();
-  if ((code > 77) && (code < 91)) return code.toString().fromCharCode()
-})
+  let arr = str.split('');
+  function cypher(letter) {
+    const code = letter.charCodeAt();
+    if ((code > 77) && (code < 91)) return String.fromCharCode(code - 13);
+    if ((code > 64) && (code < 78)) return String.fromCharCode(code + 13);
+    if ((code > 96) && (code < 110)) return String.fromCharCode(code + 13);
+    if ((code > 109) && (code < 123)) return String.fromCharCode(code - 13);
+    return letter;
+  }
+  arr = arr.map((value) => cypher(value));
+  return arr.join('');
 }
 
 /**
