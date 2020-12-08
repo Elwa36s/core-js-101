@@ -224,10 +224,11 @@ function getRectangleString(width, height) {
   bottom.splice(1, 0, horizon.join(''));
   top = top.join('');
   middle = middle.join('');
-  const verticality = new Array(height - 2);
+  let verticality = new Array(height - 2);
   verticality.fill(middle);
+  verticality = verticality.join('');
   bottom = bottom.join('');
-  return top + middle + bottom;
+  return top + verticality + bottom;
 }
 
 
